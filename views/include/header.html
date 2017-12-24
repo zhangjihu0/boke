@@ -5,7 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-
+    <style>
+      img{
+        width:35px;
+        height:35px;
+        border-radius:50%
+      }
+      .nav-right{
+        float: right
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-inverse">
@@ -16,12 +25,37 @@
         <div>
          <ul class="nav navbar-nav">
             <li><a href="/">首页</a></li>
-            <li><a href="/user/signup">注册</a></li>
-            <li><a href="/user/signin">登录</a></li>
-            <li><a href="/user/signout">退出</a></li>
-            <li><a href="article/add">发表文章</a></li>
+            <%if(user){%>
+              <li><a href="/user/signout">退出</a></li>
+              <li><a href="/article/add">发表文章</a></li>
+            <%}else{%>
+              <li><a href="/user/signup">注册</a></li>
+              <li><a href="/user/signin">登录</a></li>
+            <%}%>
          </ul>
+          <form action="/" role="search" class="navbar-form navbar-left">
+            <div class="form-group"><input type="test" value="<%=keyword%>" class="form-control" name="keyword" placeholder="请输入关键字"></div> 
+            <button type="submit" class="btn btn-primary">搜索</button>
+          </form>
+        <%if(user){%>
+        <ul class="nav navbar-nav nav-right">
+          <li>
+            <a href="">
+              <img src="<%=user.avatar%>" alt="" />
+              <%=user.username%>
+            </a>
+          </li>
+        </ul>
+        <%}%>
         </div>
       </div>
     </nav>
     <div class="container">
+      <%if(success){%>
+          <div class="alert alert-success"><%=success%></div>
+      <%}%>
+      <%if(error){%>
+        <div class="alert alert-danger"><%=error%></div>
+      <%}%>
+     
+    

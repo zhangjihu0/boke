@@ -1,0 +1,18 @@
+<%-include ../include/header.html%>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%=article.title%>
+  </div>
+  <div class="panel-body">
+    <%=article.content%>
+  </div>
+  <%if(user && article._id == user._id){%>
+     <div class="panel-footer">
+      <a class="btn btn-waring" href="/article/update/<%=article._id%>">编译</a>
+
+      <a class="btn btn-danger" href="/article/delete/<%=article._id%>">删除</a>
+    </div>
+  <%}%>
+ 
+</div>
+<%-include ../include/footer.html%>
